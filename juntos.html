@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+</head>
+<body>
+
+    <!-- Videorm com controles, loop e poster -->
+    <video id="video" width="400" height="300" controls loop poster="rett.jpg">
+        <source src="ret.mp4" type="video/mp4">
+        <track kind="subtitles" src="legenda.vtt" srclang="pt-br" label="Português">
+    </video>
+
+    <!-- Botões para controlar a reprodução -->
+    <div>
+        <button onclick="pauseVideo()">Pausar Videorm</button>
+        <button onclick="playVideo()">Reproduzir Videorm</button>
+    </div>
+
+    <!-- Botões para manipular o tamanho e atributos -->
+    <div>
+        <button onclick="Aumentar()">Aumentar Tamanho</button>
+        <button onclick="Diminuir()">Diminuir Tamanho</button>
+        <button onclick="getVideoAttributes()">Informar Atributos</button>
+        <button onclick="togglePoster()">Alternar Poster</button>
+    </div>
+
+    <!-- Script com as funções JavaScript -->
+    <script>
+        function pauseVideo() {
+            var videorm = document.getElementById('video');
+            videorm.pause();
+        }
+
+        function playVideo() {
+            var videorm = document.getElementById('video');
+            videorm.play();
+        }
+
+        function Diminuir() {
+            var videorm = document.getElementById('video');
+            videorm.style.transform = "scale(0.8)";
+        }
+
+        function Aumentar() {
+            var videorm = document.getElementById('video');
+            videorm.style.transform = "scale(1.1)";
+        }
+
+        function getVideoAttributes() {
+            var videorm = document.getElementById('video');
+            var attributes = [
+                `Fonte atual: ${videorm.currentSrc}`,
+                `Controles: ${videorm.controls ? 'Sim' : 'Não'}`,
+                `Autoplay: ${videorm.autoplay ? 'Ativado' : 'Desativado'}`,
+                `Loop: ${videorm.loop ? 'Ativado' : 'Desativado'}`,
+                `Imagem inicial: ${videorm.poster}`,
+                `ID: ${videorm.id}`,
+                `Largura: ${videorm.width}px`,
+                `Altura: ${videorm.height}px`
+            ].join('\n');
+
+            alert(attributes);
+        }
+
+        function togglePoster() {
+            var videorm = document.getElementById('video');
+            videorm.poster = videorm.poster === "reti.jpg" ? "rett.jpg" : "reti.jpg";
+        }
+
+        document.getElementById('videorm').addEventListener("pause", function() {
+            alert("O videorm foi pausado.");
+        });
+
+        document.getElementById('videorm').addEventListener("ended", function() {
+            alert("O videorm foi finalizado.");
+        });
+    </script>
+
+</body>
+</html>
